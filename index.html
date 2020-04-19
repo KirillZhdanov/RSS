@@ -8,11 +8,10 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
   <title>English for kids</title>
 </head>
 <body>
-
-  
     <nav class="nav-wrapper teal lighten-2">
       <div class="container">
         <a href="#" class="sidenav-trigger show-on-medium-and-up" data-target="mobile-links">
@@ -20,81 +19,31 @@
         </a>
         <div class="switch right">
           <label>
-            Play
+            Train
             <input type="checkbox">
             <span class="lever"></span>
-            Train
+            Play
           </label>
         </div>
       </div>
     </nav>
-  <ul class="sidenav " id="mobile-links">
-    <li><a href="#"  id="menu-item">Main Page</a></li>
-    <li><a href="#" id="menu-item">Action (set A)</a></li>
-    <li><a href="#" id="menu-item">Action (set B)</a></li>
-    <li><a href="#" id="menu-item">Animal (set A)</a></li>
-    <li><a href="#" id="menu-item">Animal (set B)</a></li>
-    <li><a href="#" id="menu-item">Clothes</a></li>
-    <li><a href="#" id="menu-item">Emotions</a></li>
+  <ul class="sidenav sidenav-close" id="mobile-links">
+    <li><div><a href="#" class="close"></a></div></li>
+    <li><a href="#"  class="menu-item" id="Main Page">Main Page</a></li>
+    <li><a href="#" class="menu-item" id="Action (set A)">Action (set A)</a></li>
+    <li><a href="#" class="menu-item" id="Action (set B)">Action (set B)</a></li>
+    <li><a href="#" class="menu-item" id="Animal (set A)">Animal (set A)</a></li>
+    <li><a href="#" class="menu-item" id="Animal (set B)">Animal (set B)</a></li>
+    <li><a href="#" class="menu-item" id="Clothes">Clothes</a></li>
+    <li><a href="#" class="menu-item" id="Emotions">Emotions</a></li>
+    <li><a href="#" class="menu-item" id="Furniture">Furniture</a></li>
+    <li><a href="#" class="menu-item" id="Vegetables">Vegetables</a></li>
   </ul>
  
-  <p onclick="soundClick()">Кликни по этому тексту</p>
-  <div class="row">
-  <!--<div class="column" id="dive">
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://materializecss.com/images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-        </div>
-         <div class="card-action">
-          <a href="card.html">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column" id="dive">
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://materializecss.com/images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-        </div>
-         <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://materializecss.com/images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://materializecss.com/images/sample-1.jpg">
-          <span class="card-title">Card Title</span>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>-->
-  </div>
+  <div class="row"></div>
    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script src="./src/script.js"></script>
+  <script src="./dist/js/main.js"></script>
   
 </body>
 </html>

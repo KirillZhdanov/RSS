@@ -1,23 +1,44 @@
+body{
+  min-width: 320px;
+  font-family: 'Comic Neue', cursive;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgb(96, 73, 117) 0%, rgba(9,121,44,1) 36%, rgba(0,212,255,1) 100%);
+}
+.gameBackground{
+  background: rgb(131,58,180);
+  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
+.gameBackground~.row~.col~.card~.card-action{
+  display: none !important;
+}
 label{
     color: white;
     font-size: 1.5vw;
+}
+.grayFilt{
+  filter: grayscale(100);
 }
 .card{
   width: 100%;
   height: 65%;
   max-height: 400px;
-  transition: transform 1s;
+  transition: transform 2s;
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
 }
-
+.card-action{
+    max-height: 100px;
+}
 .card-front,.card-back{
     position: absolute;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     width: 100%;
     
+}
+.start{
+  margin: 0 auto;
 }
 .card-back{
     transform: rotateY(180deg);
@@ -28,4 +49,57 @@ label{
 .card.is-flipped>.card-front>.card-action>p{
     visibility: hidden;
 }
-
+.menu-item>.card-image{
+  clip-path: circle(50% at center);
+}
+.close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  
+ 
+  @media only screen and (max-width: 2560px) {
+    .card {
+        max-height: 20vw !important;
+    }
+  }
+ @media only screen and (max-width: 990px) {
+    .card {
+        max-height: 40vw !important;
+    }
+    label{
+      color: white;
+      font-size: 4.5vw;
+  }
+  }
+  @media only screen and (max-width: 601px) {
+    .card {
+        max-height: 75vw !important;
+    }
+    label{
+      color: white;
+      font-size: 5.5vw;
+  }
+  }
+   
