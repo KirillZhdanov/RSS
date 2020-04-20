@@ -153,21 +153,30 @@ function gameSound() {
   });
   const soundSuccess = './sounds/success.mp3';
   const soundError = './sounds/error.mp3';
+  const row = document.querySelector('.row');
+  const stars = document.querySelector('.stars');
   document.addEventListener('click', (event) => {
     if (event.target.id === a && playlist.length > 0) {
       
       a = playlist.pop();
       event.target.closest('.card-container').classList.toggle('grayFilt');
+      let starwin=document.createElement('img');
+      starwin.src="./img/star-win.png";
+      stars.prepend(starwin);
       soundGame = `./sounds/${a}.mp3`;
       soundClick(soundGame);
+     
       
     }
     if (event.target.id !== a && playlist.includes(event.target.id)) {
       soundClick(soundError);
       errors++;
+      let starlose=document.createElement('img');
+      starlose.src="./img/star.png";
+      stars.prepend(starlose);
     }
     if (event.target.id === a && playlist.length === 0) {
-      const row = document.querySelector('.row');
+      
       while (row.firstChild) {
         row.removeChild(row.firstChild);
       }
@@ -182,13 +191,17 @@ function gameSound() {
         let resultErrors=document.createElement('p');
         resultErrors.innerHTML="Errors: "+errors;
         row.appendChild(resultErrors);
+      
         
+      }
+      while (stars.firstChild) {
+        stars.removeChild(stars.firstChild);
       }
       resultpic.className='center';
       row.appendChild(resultpic);
       soundGame="";
       document.querySelector('.start').textContent = 'Start game';
-      
+      document.querySelector('.start').style.display = 'none';
     }
   });
 }

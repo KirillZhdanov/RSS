@@ -15,6 +15,11 @@ label{
     color: white;
     font-size: 1.5vw;
 }
+.stars{
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+}
 .grayFilt{
   filter: grayscale(100);
 }
@@ -37,8 +42,28 @@ label{
     width: 100%;
     
 }
-.start{
+.row>img{
+  width: 50%;
+  height: 55%;
+  object-fit: contain;
+  display: block;
   margin: 0 auto;
+}
+.row>p{
+  font-size: 5vw;
+  margin: 0;
+  text-align: center;
+  color: aquamarine;
+}
+.start{
+  margin: -27px auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 40vw;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 .card-back{
     transform: rotateY(180deg);
