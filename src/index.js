@@ -156,6 +156,15 @@ function gameSound() {
   const row = document.querySelector('.row');
   const stars = document.querySelector('.stars');
   document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('menu-item')){
+        while (stars.firstChild) {
+        stars.removeChild(stars.firstChild);
+      }
+      errors=0;
+      soundGame="";
+      document.querySelector('.start').textContent = 'Start game';
+      document.querySelector('.start').style.display = 'none';
+    }
     if (event.target.id === a && playlist.length > 0) {
       
       a = playlist.pop();
@@ -199,6 +208,7 @@ function gameSound() {
       }
       resultpic.className='center';
       row.appendChild(resultpic);
+      errors=0;
       soundGame="";
       document.querySelector('.start').textContent = 'Start game';
       document.querySelector('.start').style.display = 'none';
