@@ -1,6 +1,6 @@
- import cards from './cards.js';
+import cards from './cards.js';
 
- function gameText() {
+function gameText() {
   const test = document.querySelectorAll('div.card-action');
   const startBtn = document.querySelector('.start');
   if (isGamemode && index > 0) {
@@ -46,6 +46,10 @@ class Page {
     cardActionFrontText.innerHTML = id.toUpperCase();
     cardActionFrontText.id = id;
     cardActionFrontText.className = 'word';
+    const repeatF = document.createElement('img');
+    repeatF.src = './img/repeat.png';
+    repeatF.id = id;
+    repeatF.className = 'repeat';
     // back side of card
     const cardBack = document.createElement('div');
     cardBack.id = id;
@@ -60,6 +64,7 @@ class Page {
     cardActionBackText.id = id;
     cardActionBackText.className = 'word';
 
+
     imageFront.id = id;
     imageFront.src = pics;
 
@@ -69,6 +74,7 @@ class Page {
     cardimageFront.appendChild(imageFront);
     cardFront.appendChild(cardimageFront);
     cardActionFront.appendChild(cardActionFrontText);
+    cardActionFront.appendChild(repeatF);
     cardFront.appendChild(cardActionFront);
     card.appendChild(cardFront);
     container.appendChild(card);
@@ -153,65 +159,65 @@ function gameSound() {
   });
   const soundSuccess = './sounds/success.mp3';
   const soundError = './sounds/error.mp3';
+  const soundLose = './sounds/lose.mp3';
+  const soundCorrect = './sounds/correct.mp3';
   const row = document.querySelector('.row');
   const stars = document.querySelector('.stars');
   document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('menu-item')){
-        while (stars.firstChild) {
+    if (event.target.classList.contains('menu-item')) {
+      while (stars.firstChild) {
         stars.removeChild(stars.firstChild);
       }
-      errors=0;
-      soundGame="";
+      errors = 0;
+      soundGame = '';
       document.querySelector('.start').textContent = 'Start game';
       document.querySelector('.start').style.display = 'none';
     }
     if (event.target.id === a && playlist.length > 0) {
-      
+      soundClick(soundCorrect);
       a = playlist.pop();
       event.target.closest('.card-container').classList.toggle('grayFilt');
-      let starwin=document.createElement('img');
-      starwin.src="./img/star-win.png";
+      const starwin = document.createElement('img');
+      starwin.src = './img/star-win.png';
       stars.prepend(starwin);
       soundGame = `./sounds/${a}.mp3`;
-      soundClick(soundGame);
-     
-      
+      setTimeout(() => { soundClick(soundGame); }, 2000);
     }
     if (event.target.id !== a && playlist.includes(event.target.id)) {
       soundClick(soundError);
       errors++;
-      let starlose=document.createElement('img');
-      starlose.src="./img/star.png";
+      const starlose = document.createElement('img');
+      starlose.src = './img/star.png';
       stars.prepend(starlose);
     }
     if (event.target.id === a && playlist.length === 0) {
-      
       while (row.firstChild) {
         row.removeChild(row.firstChild);
       }
-      let resultpic=document.createElement('img');
-     
+      const resultpic = document.createElement('img');
+
       if (errors === 0) {
         soundClick(soundSuccess);
-        resultpic.src="./img/success.jpg";
+        resultpic.src = './img/success.jpg';
       } else {
-        soundClick(soundError);
-        resultpic.src="./img/failure.jpg";
-        let resultErrors=document.createElement('p');
-        resultErrors.innerHTML="Errors: "+errors;
+        soundClick(soundLose);
+        resultpic.src = './img/failure.jpg';
+        const resultErrors = document.createElement('p');
+        resultErrors.innerHTML = `Errors: ${errors}`;
         row.appendChild(resultErrors);
-      
-        
       }
       while (stars.firstChild) {
         stars.removeChild(stars.firstChild);
       }
-      resultpic.className='center';
+      resultpic.className = 'center';
       row.appendChild(resultpic);
-      errors=0;
-      soundGame="";
+      errors = 0;
+      soundGame = '';
       document.querySelector('.start').textContent = 'Start game';
       document.querySelector('.start').style.display = 'none';
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   });
 }
@@ -227,16 +233,10 @@ document.addEventListener('click', (event) => {
   if (event.target.classList.contains('menu-item')) {
     const { target } = event;
     index = cards[0].indexOf(target.id) + 1;
+    document.querySelectorAll('a').forEach((element) => element.classList.remove('active'));
+    document.getElementById(event.target.id).classList.add('active');
     if (index === 0) {
-      const row = document.querySelector('.row');
-      while (row.firstChild) {
-        row.removeChild(row.firstChild);
-      }
-      for (let i = 0; i < 8; i++) {
-        mainPage.create(cards[0][i], cards[i + 1][index + 1].image);
-      }
-
-      return;
+      location.reload();
     }
 
     if (index > 0 && index !== 'undefined') {

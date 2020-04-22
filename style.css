@@ -4,6 +4,10 @@ body{
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgb(96, 73, 117) 0%, rgba(9,121,44,1) 36%, rgba(0,212,255,1) 100%);
 }
+.active{
+  color: teal !important;
+  text-decoration: underline;
+}
 .gameBackground{
   background: rgb(131,58,180);
   background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
@@ -20,6 +24,11 @@ label{
   height: 60px;
   overflow: hidden;
 }
+.repeat{
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+}
 .grayFilt{
   filter: grayscale(100);
 }
@@ -34,6 +43,9 @@ label{
 }
 .card-action{
     max-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .card-front,.card-back{
     position: absolute;
@@ -77,6 +89,12 @@ label{
 .menu-item>.card-image{
   clip-path: circle(50% at center);
 }
+.sidenav{
+  min-width: 27%;
+}
+.sidenav li>a{
+  font-size: 24px;
+}
 .close {
     position: absolute;
     right: 32px;
@@ -103,7 +121,15 @@ label{
     transform: rotate(-45deg);
   }
   
- 
+  @media only screen and (min-width: 2000px) {
+    .card-action>span{
+      font-size: 1.5vw;
+    }
+    .repeat {
+      width: 64px;
+      height: 64px;
+    }
+  }
   @media only screen and (max-width: 2560px) {
     .card {
         max-height: 20vw !important;
