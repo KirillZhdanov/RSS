@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie-Search</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./node_modules/swiper/css/swiper.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
 
 </head>
 <body>
@@ -21,12 +22,17 @@
     <main>
         <form class="searchFilmsBlock" id="searchFilmsBlock">
             <input type="text" autofocus class="searchFilmsInput" placeholder=" Enter a movie name here シ" id="searchFilmsInput">
+            <button type="reset" class="clearBtn">
+              <i class="fas fa-times"></i>
+           </button> 
             <button type="submit" class="searchFilmsBtn">
                <i class="fas fa-search"></i>
             </button> 
             <br>
             
         </form>
+        <div class="loader hide" id="loader"></div>
+        <p class="messageResults" id="resultsFor"></p> 
         <p class="messageResults" id="noResults">No Search Results for</p> 
         <section id="main"></section>
         <div class="swiper-container">

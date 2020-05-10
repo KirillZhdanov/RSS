@@ -40,8 +40,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint script.js",
-    "lint:fix": "eslint script.js --fix",
+    "lint": "eslint ./src/index.js",
+    "lint:fix": "eslint ./src/index.js --fix",
     "dist": "webpack -w"
   },
   "author": "Kirill Zhdanov",
