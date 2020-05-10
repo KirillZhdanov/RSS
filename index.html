@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./node_modules/swiper/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</head>
+<body>
+<header>
+  <div class="headerContainer">            
+    <div class="logo">
+      <h1>Movie-Search</h1>    
+    </div>
+  </div>
+</header>
+    <main>
+        <form class="searchFilmsBlock" id="searchFilmsBlock">
+            <input type="text" autofocus class="searchFilmsInput" placeholder=" Enter a movie name here シ" id="searchFilmsInput">
+            <button type="submit" class="searchFilmsBtn">
+               <i class="fas fa-search"></i>
+            </button> 
+            <br>
+            
+        </form>
+        <p class="messageResults" id="noResults">No Search Results for</p> 
+        <section id="main"></section>
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper" id="swiper-wrapper"></div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+
+    </main>
+    <footer>
+      <a href="https://rs.school/" target="_blank"><img class="footer-ico rs-logo" src="./img/rsLogo.png"></a>
+      <a href="https://www.youtube.com/c/rollingscopesschool" target="_blank"><img class="footer-ico" src="https://img.icons8.com/material-sharp/24/000000/youtube-play.png"></a>
+      <a href="https://github.com/KirillZhdanov"><img class="footer-ico" src="https://img.icons8.com/windows/32/000000/github.png"></a>
+    </footer>
+    <script src="./dist/main.js"></script>
+    <script src="./node_modules/swiper/js/swiper.min.js"></script>    
+    <script>
+  var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      slidesPerGroup: 1,
+      loop: false,
+      loopFillGroupWithBlank: false,
+      freeMode: true,
+  mousewheel: {
+    releaseOnEdges: true,
+  },
+       breakpoints: {
+    // when window width is >= 320px
+    300: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+    // when window width is >= 480px
+    400: {
+      slidesPerView: 2,
+      spaceBetween: 20
+    },
+    600: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    },
+    // when window width is >= 640px
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 40
+    },
+    1600: {
+      slidesPerView: 5,
+      spaceBetween: 50
+    },
+    2150: {
+      slidesPerView: 6,
+      spaceBetween: 60
+    }
+    },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    </script>
+</body>
+</html>
