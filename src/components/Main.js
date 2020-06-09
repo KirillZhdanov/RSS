@@ -1,23 +1,28 @@
 import React,{useState, useEffect,Suspense} from 'react'
-//import AppBG from './AppBG'
-//import WeatherBlock from './WeatherBlock'
 import axios from 'axios'
 import Loader from './Loader'
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 const AppBG= React.lazy(() => import('./AppBG'));
 const WeatherBlock= React.lazy(() => import('./WeatherBlock'));
 const Map= React.lazy(() => import('./Map'));
-//import {Context} from './context'
-//Wimport Navigation from './Navigation'
 
 
-export default function Main() {
+
+export default function Main(props) {
     const [geoposition, setGeo] = useState("");
     const [weatherData, getWeatherData] = useState({});
     const [navbarData, getNavBarData] = useState("");
     const [units, SetUnits] = useState("C");
+    const [lang, SetLang] = useState("en");
     const [loaded, setLoading] = useState(false);
     const [country_code, SetCountryCode]=useState("");
     const [OpenCageData, SetOpenCageData]=useState({});
+    const { t } = useTranslation();
+
+  function handleClick(lang) {
+    i18next.changeLanguage(lang)
+  }
    
     const values = (e) => {
          const city = document.getElementById('search').value; 
@@ -40,21 +45,17 @@ export default function Main() {
         const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&units=${table[units]}&key=${API_KEY}`;
         const response=axios.get(url);
         const data= await response;
-        //console.log(data);
-        
-        //WeatherData=data;
-        //console.log("Weater for:"+ city);
         getWeatherData(data);
         
     }
     const get_openCage = async(city) =>{
         const API_KEY="57802ff5b089417a8745e82233537ee8";
-        const url = `https://api.opencagedata.com/geocode/v1/json?q=${city}&language=en&key=${API_KEY}`;
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${city}&language=${lang}&key=${API_KEY}`;
         const response=axios.get(url);
         const data= await response;
         SetCountryCode(data?.data?.results[0]?.components?.country_code);
         SetOpenCageData(data?.data?.results[0]);
-        //console.log(data.data);
+       
  }
    const cityToSearch = navbarData !== "" ? navbarData : geoposition;
     useEffect(()=>{ 
@@ -66,21 +67,20 @@ export default function Main() {
          get_openCage(cityToSearch);
          if(country_code!=="")
          get_weather(cityToSearch,country_code);
-        // SetCountryCode("");
-           
+       
         }
         
     })
     if(geoposition !== ""&&country_code !== ""&&weatherData?.data !== undefined){
-            
+       
     return (
         <Suspense  fallback={<Loader/>}>
        <AppBG weather={weatherData}>
-                    <div className="Main">
+                <div className="Main">
                     <div className="navigation-block"> 
                 <div className="weather-nav">
                     <button className="reload" onClick={event =>{setLoading(false)}}></button>
-                    <select name="lang" id="lang">
+                    <select name="lang" id="lang" onChange={event => {SetLang(event.target.value);handleClick(event.target.value)}}>
                         <option value="en">EN</option>
                         <option value="ru">RU</option>
                         <option value="be">BE</option>
@@ -109,4 +109,3 @@ export default function Main() {
     else
     return <Loader/>;
 }
-// <Weather city = {cityToSearch} passWeatherData={getWeatherData} load={setLoading} loaded={loaded}/>

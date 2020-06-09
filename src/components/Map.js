@@ -9,7 +9,6 @@ export default function Map(props) {
   const [map, setMap] = useState(null);
   const [latitude, setLatitude] = useState("");
   const mapContainer = useRef(null);
-  //console.log(props.OpenCageData?.geometry?.lat);  
   const lat=props.OpenCageData?.geometry?.lat||"27.5618791";
   const lon=props.OpenCageData?.geometry?.lng||"53.902334";
   
@@ -18,7 +17,7 @@ export default function Map(props) {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+        style: "mapbox://styles/mapbox/streets-v11", 
         center: [lon,lat],
         zoom: 10,
       });

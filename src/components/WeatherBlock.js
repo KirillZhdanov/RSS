@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import Loader from './Loader'
+import { useTranslation } from 'react-i18next';
 
 export default function WeatherBlock(props) {
     const [loaded, setLoading] = useState(false);
@@ -9,6 +10,7 @@ export default function WeatherBlock(props) {
     const currentDayHum = props.weather.data.data !== undefined ? props.weather.data.data[0]?.rh : 0;
     const currentDayOfWeek = days[(new Date(props.weather.data.data !== undefined ?props.weather?.data?.data[0]?.datetime:"2020-06-02")).getDay()];
     const threeDaysWeather = [];
+    const { t } = useTranslation();
     
     for(let i=1;i<=3;i++){
         threeDaysWeather.push({
@@ -24,22 +26,22 @@ export default function WeatherBlock(props) {
             <h2>{props.OpenCageData.formatted}</h2>
         <div className="TodayBlockFull">
             <div className="TodayBlock">
-                <h4>{currentDayOfWeek}</h4>
+                <h4>{t(currentDayOfWeek)}</h4>
                 <div className="Today">
                     <p className="currentWeatherTemperature">{currentDayTemp}°</p>
                     <div className="weatherIcon" style={{backgroundImage:"url(https://www.weatherbit.io/static/img/icons/"+currentDayIcon+".png)"}}></div>
                 </div>
             </div>
             <div className="TodayBlockExtra">
-            <p>{props.weather.data.data !== undefined?props.weather?.data?.data[0]?.weather?.description:0}</p>
-                <p>Feels like {props.weather.data.data !== undefined?props.weather?.data?.data[0]?.app_min_temp:0}°</p>
-                <p>Humidity:{currentDayHum}%</p>
+            <p>{t(props.weather.data.data !== undefined?props.weather?.data?.data[0]?.weather?.description:"Rain")}</p>
+                <p>{t("Feels like")} {props.weather.data.data !== undefined?props.weather?.data?.data[0]?.app_min_temp:0}°</p>
+                <p>{t("Humidity")} {currentDayHum}%</p>
             </div>
         </div>
         <div  className="threeDaysWeather">
     {threeDaysWeather.map((weather,index) => (
         <div className="dayWeatherBlock" key={weather.key}>
-            <h4>{weather.dayOfWeek}</h4>
+            <h4>{t(weather.dayOfWeek)}</h4>
             <div className="dayWeather">
             <p>{weather.temp}°</p>
             <div className="weatherIcon" style={{backgroundImage:"url(https://www.weatherbit.io/static/img/icons/"+weather.icon+".png)"}}></div>
